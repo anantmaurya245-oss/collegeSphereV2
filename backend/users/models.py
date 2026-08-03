@@ -17,6 +17,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     blank=True,
     default="",
     )
+    profile_picture = models.ImageField(
+    upload_to="profile_pictures/",
+    blank=True,
+    null=True,
+    )
 
     college = models.CharField(
     max_length=255,
@@ -62,31 +67,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
     )
 
-    bio = models.TextField(
-        blank=True,
-    )
-
-    profile_picture = models.ImageField(
-        upload_to="profile_pictures/",
-        blank=True,
-        null=True,
-    )
-
-    # Temporary fields (will become ForeignKeys later)
-    university = models.CharField(
-        max_length=255,
-        blank=True,
-    )
-
-    department = models.CharField(
-        max_length=255,
-        blank=True,
-    )
-
-    year_of_study = models.PositiveSmallIntegerField(
-        null=True,
-        blank=True,
-    )
 
     is_verified = models.BooleanField(
         default=False,

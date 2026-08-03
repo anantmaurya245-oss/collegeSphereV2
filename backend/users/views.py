@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.parsers import MultiPartParser, FormParser
 
 from .serializers import LoginSerializer, RegisterSerializer, UserProfileSerializer
 
@@ -89,13 +90,21 @@ class LoginView(generics.GenericAPIView):
         )
 
 
-class MeView(generics.RetrieveAPIView):
+from rest_framework.parsers import MultiPartParser, FormParser
+
+
+class MeView(generics.RetrieveUpdateAPIView):
     """
-    Endpoint returning the profile of the currently authenticated User.
+    View and update the authenticated user's profile.
+    Supports profile picture uploads.
     """
 
     permission_classes = [IsAuthenticated]
     serializer_class = UserProfileSerializer
+
+    parser_classes = [
+        MultiPartParser,
+        FormParser]
 
     def get_object(self):
         return self.request.user

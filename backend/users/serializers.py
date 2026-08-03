@@ -108,6 +108,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "college",
             "department",
             "year",
+            "profile_picture",
         ]
 
         read_only_fields = [
