@@ -93,8 +93,7 @@ class LoginSerializer(serializers.Serializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """
-    Read-only serializer exposing basic profile information
-    for the authenticated user.
+    Serializer for viewing and updating the authenticated user's profile.
     """
 
     class Meta:
@@ -105,11 +104,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "username",
             "first_name",
             "last_name",
+            "bio",
+            "college",
+            "department",
+            "year",
         ]
+
         read_only_fields = [
             "id",
             "email",
             "username",
-            "first_name",
-            "last_name",
         ]

@@ -12,8 +12,28 @@ from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    Custom User model for CampusSphere.
-    """
+    Custom User model for CampusSphere."""
+    bio = models.TextField(
+    blank=True,
+    default="",
+    )
+
+    college = models.CharField(
+    max_length=255,
+    blank=True,
+    default="",
+    )
+
+    department = models.CharField(
+    max_length=255,
+    blank=True,
+    default="",
+    )
+
+    year = models.PositiveIntegerField(
+    null=True,
+    blank=True,
+    )
 
     id = models.UUIDField(
         primary_key=True,
