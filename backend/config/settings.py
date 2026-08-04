@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # Local Apps
     "users",
+    "posts",
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
