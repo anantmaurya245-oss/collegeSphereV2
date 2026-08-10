@@ -116,3 +116,42 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "email",
             "username",
         ]
+class PublicProfileSerializer(serializers.ModelSerializer):
+    """
+    Serializer for viewing another user's public profile.
+
+    Sensitive information such as email and password is not exposed.
+    """
+
+    posts_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+            "bio",
+            "college",
+            "department",
+            "year",
+            "profile_picture",
+            "posts_count",
+        ]
+
+        read_only_fields = [
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+            "bio",
+            "college",
+            "department",
+            "year",
+            "profile_picture",
+            "posts_count",
+        ]
+
+    def get_posts_count(self, obj):
+        return obj.posts.count()

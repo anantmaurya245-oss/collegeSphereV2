@@ -148,3 +148,20 @@ class LogoutView(generics.GenericAPIView):
             },
             status=status.HTTP_200_OK,
         )
+
+
+
+
+from .models import User
+from .serializers import PublicProfileSerializer
+
+
+class PublicProfileView(generics.RetrieveAPIView):
+    """
+    Retrieve a user's public profile using their username.
+    """
+
+    queryset = User.objects.all()
+    serializer_class = PublicProfileSerializer
+    permission_classes = [AllowAny]
+    lookup_field = "username"
